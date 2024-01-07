@@ -31,8 +31,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout2"
             style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
-            android:layout_width="363dp"
-            android:layout_height="55dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="30dp"
@@ -50,7 +50,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/Filename"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="30dp"
