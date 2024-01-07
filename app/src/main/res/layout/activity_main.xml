@@ -14,6 +14,7 @@
         android:layout_width="181dp"
         android:layout_height="81dp"
         android:text="@string/next"
+        android:backgroundTint="#6600EE"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
