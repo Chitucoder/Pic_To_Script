@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -82,6 +83,7 @@ public class MainActivity3 extends AppCompatActivity{
     int count=0;
     int CREATE_TXTFILE_REQUEST_CODE=1,REQUEST_CODE_SAVE_DOCX=2, REQUEST_CODE_SAVE_SHEET = 3;
     AutoCompleteTextView autoCompleteTextView;
+    EditText F_name;
     ArrayAdapter<String> adapterItems;
     TextRecognizer recognizer;
     Uri resUri,fileUri;
@@ -100,7 +102,7 @@ public class MainActivity3 extends AppCompatActivity{
 
         savebtn = findViewById(R.id.savebtn);
         sharebtn = findViewById(R.id.sharebtn);
-
+        F_name = (EditText) findViewById(R.id.F_Name);
         createTxtRecg();
 
         txtExtraction();
@@ -157,7 +159,7 @@ public class MainActivity3 extends AppCompatActivity{
             Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-            intent.putExtra(Intent.EXTRA_TITLE, "example.docx");
+            intent.putExtra(Intent.EXTRA_TITLE, F_name.getText()+".docx");
             startActivityForResult(intent, REQUEST_CODE_SAVE_DOCX);
 
         } else if (item.equals(listDoc[1])) {
@@ -166,7 +168,7 @@ public class MainActivity3 extends AppCompatActivity{
             Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            intent.putExtra(Intent.EXTRA_TITLE,"example.xlsx");
+            intent.putExtra(Intent.EXTRA_TITLE,F_name.getText()+".xlsx");
             startActivityForResult(intent, REQUEST_CODE_SAVE_SHEET);
 
 
@@ -175,6 +177,7 @@ public class MainActivity3 extends AppCompatActivity{
             Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TITLE,F_name.getText()+".txt");
             startActivityForResult(intent, CREATE_TXTFILE_REQUEST_CODE);
 
         } else if (item.equals(listDoc[3])) {

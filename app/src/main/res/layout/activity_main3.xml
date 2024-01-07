@@ -6,55 +6,89 @@
     xmlns:andorid="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity3">
 
-    <include
-        android:id="@+id/actionbar"
-        layout="@layout/actionbar"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="168dp" />
-
-    <TextView
-        android:id="@+id/txtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center|top"
-        android:text="Select the file to convert"
-        android:textSize="20sp" />
-
-    <com.google.android.material.textfield.TextInputLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="150dp"
-        android:layout_marginHorizontal="25dp"
-        android:layout_gravity="center_horizontal"
-        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        >
+        android:layout_height="match_parent">
 
-        <AutoCompleteTextView
-            android:id="@+id/auto_complete_textview"
+        <include
+            android:id="@+id/actionbar"
+            layout="@layout/actionbar"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="168dp" />
+
+        <TextView
+            android:id="@+id/txtview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="50dp"
+            android:text="Enter the file details to convert"
+            android:textSize="20sp"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toBottomOf="@+id/actionbar" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="363dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="30dp"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toBottomOf="@+id/Filename">
+
+            <AutoCompleteTextView
+                android:id="@+id/auto_complete_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/select_doc" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/Filename"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/select_doc" />
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="30dp"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toBottomOf="@+id/txtview">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/F_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/File_Name" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/savebtn"
-        android:layout_width="135dp"
-        android:layout_height="65dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="300dp"
-        android:backgroundTint="#6600EE"
-        android:text="Save File" />
+        <Button
+            android:id="@+id/savebtn"
+            android:layout_width="135dp"
+            android:layout_height="65dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="#6600EE"
+            android:text="Save File"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
-    <Button
-        android:id="@+id/sharebtn"
-        android:layout_width="135dp"
-        android:layout_height="65dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="200dp"
-        android:backgroundTint="#6600EE"
-        android:text="Share File" />
+        <Button
+            android:id="@+id/sharebtn"
+            android:layout_width="135dp"
+            android:layout_height="65dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#6600EE"
+            android:text="Share File"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toBottomOf="@+id/savebtn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
