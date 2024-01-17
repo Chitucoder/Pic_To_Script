@@ -90,7 +90,7 @@ public class MainActivity3 extends AppCompatActivity{
     Bitmap bitmap;
     Intent intent;
     Task<Text> result;
-    Button savebtn,sharebtn;
+    Button savebtn,sharebtn,downloadbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +102,7 @@ public class MainActivity3 extends AppCompatActivity{
 
         savebtn = findViewById(R.id.savebtn);
         sharebtn = findViewById(R.id.sharebtn);
+        downloadbtn = findViewById(R.id.downloadbtn);
         F_name = (EditText) findViewById(R.id.F_Name);
         createTxtRecg();
 
@@ -134,6 +135,14 @@ public class MainActivity3 extends AppCompatActivity{
                 else {
                     Toast.makeText(MainActivity3.this, "Save the file before sharing", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        downloadbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent downloadintent = new Intent(MainActivity3.this, MainActivity4.class);
+                startActivity(downloadintent);
             }
         });
 

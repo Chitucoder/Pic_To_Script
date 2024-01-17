@@ -73,7 +73,7 @@
             android:layout_width="135dp"
             android:layout_height="65dp"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:backgroundTint="#6600EE"
             android:textColor="#ffffff"
             android:text="Save File"
@@ -93,6 +93,19 @@
             andorid:layout_constraintEnd_toEndOf="parent"
             andorid:layout_constraintStart_toStartOf="parent"
             andorid:layout_constraintTop_toBottomOf="@+id/savebtn" />
+
+        <Button
+            android:id="@+id/downloadbtn"
+            android:layout_width="135dp"
+            android:layout_height="65dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#6600EE"
+            android:text="Downloads"
+            andorid:layout_constraintEnd_toEndOf="parent"
+            andorid:layout_constraintStart_toStartOf="parent"
+            andorid:layout_constraintTop_toBottomOf="@+id/sharebtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
