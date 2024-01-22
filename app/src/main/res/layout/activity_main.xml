@@ -22,4 +22,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/downloadbtn2"
+        android:layout_width="135dp"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:backgroundTint="#6600EE"
+        android:text="Downloads"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

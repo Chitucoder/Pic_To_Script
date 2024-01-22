@@ -104,7 +104,7 @@ import java.util.List;
 
         savebtn = findViewById(R.id.savebtn);
         sharebtn = findViewById(R.id.sharebtn);
-//        downloadbtn = findViewById(R.id.downloadbtn);
+        downloadbtn = findViewById(R.id.downloadbtn);
         F_name = (EditText) findViewById(R.id.F_Name);
         createTxtRecg();
 
@@ -141,13 +141,14 @@ import java.util.List;
             }
         });
 
-//        downloadbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent downloadintent = new Intent(MainActivity3.this, MainActivity4.class);
-//                startActivity(downloadintent);
-//            }
-//        });
+        downloadbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent downloadintent = new Intent(MainActivity3.this, Downloads.class);
+                downloadintent.putExtra("F_name", F_name.getText().toString());
+                startActivity(downloadintent);
+            }
+        });
 
     }
 
