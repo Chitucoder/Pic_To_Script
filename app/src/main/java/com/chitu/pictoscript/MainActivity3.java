@@ -104,7 +104,7 @@ import java.util.List;
 
         savebtn = findViewById(R.id.savebtn);
         sharebtn = findViewById(R.id.sharebtn);
-        downloadbtn = findViewById(R.id.downloadbtn);
+//        downloadbtn = findViewById(R.id.downloadbtn);
         F_name = (EditText) findViewById(R.id.F_Name);
         createTxtRecg();
 
