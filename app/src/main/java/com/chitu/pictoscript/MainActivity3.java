@@ -17,6 +17,8 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.chitu.pictoscript.adapter.RecyclerViewAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -55,37 +58,42 @@ import java.util.List;
 
 
 
-class DataFormat{
-    int left,right,top,bottom;
-    String data;
-    public DataFormat(String d,int l,int r,int t,int b){
-        left = l;
-        right = r;
-        top = t;
-        bottom = b;
-        data = d;
+    class DataFormat{
+        int left,right,top,bottom;
+        String data;
+        public DataFormat(String d,int l,int r,int t,int b){
+            left = l;
+            right = r;
+            top = t;
+            bottom = b;
+            data = d;
+        }
+
+        @NonNull
+        public String toString() {
+            return data+" "+left+" "+right+" "+top+" "+bottom;
+        }
+
     }
 
-    @NonNull
-    public String toString() {
-        return data+" "+left+" "+right+" "+top+" "+bottom;
-    }
 
-}
+    public class MainActivity3 extends AppCompatActivity{
 
+        private RecyclerView recyclerView;
+        private RecyclerViewAdapter recyclerViewAdapter;
+        private ArrayList<String> File_name;
+        private ArrayAdapter<String> arrayAdapter;
 
-public class MainActivity3 extends AppCompatActivity{
-
-    String []listDoc = {"Word File", "Excel File", "Text File", "Copy text"};
-    String item=null,content,type;
-    StringBuilder arrtxt;
-    List<DataFormat> datatowrite = new ArrayList<>();
-    int count=0;
-    int CREATE_TXTFILE_REQUEST_CODE=1,REQUEST_CODE_SAVE_DOCX=2, REQUEST_CODE_SAVE_SHEET = 3;
-    AutoCompleteTextView autoCompleteTextView;
-    EditText F_name;
-    ArrayAdapter<String> adapterItems;
-    TextRecognizer recognizer;
+        String []listDoc = {"Word File", "Excel File", "Text File", "Copy text"};
+        String item=null,content,type;
+        StringBuilder arrtxt;
+        List<com.chitu.pictoscript.DataFormat> datatowrite = new ArrayList<>();
+        int count=0;
+        int CREATE_TXTFILE_REQUEST_CODE=1,REQUEST_CODE_SAVE_DOCX=2, REQUEST_CODE_SAVE_SHEET = 3;
+        AutoCompleteTextView autoCompleteTextView;
+        EditText F_name;
+        ArrayAdapter<String> adapterItems;
+        TextRecognizer recognizer;
     Uri resUri,fileUri;
     Bitmap bitmap;
     Intent intent;
@@ -99,6 +107,11 @@ public class MainActivity3 extends AppCompatActivity{
 
         Toolbar actionBar = findViewById(R.id.actionbar);
         setSupportActionBar(actionBar);
+
+        // Recycler view initialization
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         savebtn = findViewById(R.id.savebtn);
         sharebtn = findViewById(R.id.sharebtn);
@@ -117,9 +130,13 @@ public class MainActivity3 extends AppCompatActivity{
                     Toast.makeText(MainActivity3.this, "Select required file", Toast.LENGTH_SHORT).show();
                 }else{
                     createDoc();
+                    File_name.add(String.valueOf(F_name));
                 }
             }
         });
+
+        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity3.this, File_name);
+        recyclerView.setAdapter(recyclerViewAdapter);
 
         sharebtn.setOnClickListener(new View.OnClickListener() {
             @Override
