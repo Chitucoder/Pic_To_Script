@@ -5,12 +5,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.loader.content.CursorLoader;
 
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -29,6 +32,13 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
@@ -93,10 +103,19 @@ import java.util.List;
     Task<Text> result;
     Button savebtn,sharebtn,downloadbtn;
 
+//    FB
+    StorageReference storageReference;
+    DatabaseReference databaseReference;
+    String filetitletype;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+//        Firebase initialization
+        storageReference= FirebaseStorage.getInstance().getReference();
+        databaseReference= FirebaseDatabase.getInstance().getReference("Document");
 
         Toolbar actionBar = findViewById(R.id.actionbar);
         setSupportActionBar(actionBar);
@@ -173,6 +192,7 @@ import java.util.List;
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
             intent.putExtra(Intent.EXTRA_TITLE, F_name.getText()+".docx");
+            filetitletype=".docx";
             startActivityForResult(intent, REQUEST_CODE_SAVE_DOCX);
 
         } else if (item.equals(listDoc[1])) {
@@ -182,6 +202,7 @@ import java.util.List;
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             intent.putExtra(Intent.EXTRA_TITLE,F_name.getText()+".xlsx");
+            filetitletype=".xlsx";
             startActivityForResult(intent, REQUEST_CODE_SAVE_SHEET);
 
 
@@ -191,6 +212,7 @@ import java.util.List;
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_TITLE,F_name.getText()+".txt");
+            filetitletype=".txt";
             startActivityForResult(intent, CREATE_TXTFILE_REQUEST_CODE);
 
         } else if (item.equals(listDoc[3])) {
@@ -278,6 +300,7 @@ import java.util.List;
             Toast.makeText(this, "file saved", Toast.LENGTH_SHORT).show();
             fileUri = uri;
             type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            processupload(fileUri);
         }
         else if(requestCode==REQUEST_CODE_SAVE_SHEET && resultCode==RESULT_OK){
             Uri uri = data.getData();
@@ -285,6 +308,7 @@ import java.util.List;
             Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
             fileUri = uri;
             type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            processupload(fileUri);
         }
         else if(requestCode==CREATE_TXTFILE_REQUEST_CODE && resultCode == RESULT_OK){
                 Uri uri = data.getData();
@@ -296,10 +320,54 @@ import java.util.List;
                 }
                 fileUri = uri;
                 type = "text/plain";
+                processupload(fileUri);
         }
     }
 
-    public void writeToDoc(Uri uri){
+//    FB
+        private void processupload(Uri fileUri) {
+
+            final ProgressDialog pd= new ProgressDialog(this);
+            pd.setTitle("File Uploading....!!!");
+            pd.show();
+
+            final StorageReference reference=storageReference.child("uploads/"+F_name.getText().toString()+"_"+System.currentTimeMillis()+filetitletype);
+            reference.putFile(fileUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    fileinfomodel obj=new fileinfomodel(F_name.getText().toString(), uri.toString());
+
+                                    databaseReference.child(databaseReference.push().getKey()).setValue(obj);
+
+                                    pd.dismiss();
+                                    Toast.makeText(getApplicationContext(),"File Uploaded", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                            float percent=(100*taskSnapshot.getBytesTransferred())/taskSnapshot.getTotalByteCount();
+                            pd.setMessage("Uploading: "+(int)percent+"%");
+                        }
+                    });
+        }
+
+//        FB
+
+
+
+        public void writeToDoc(Uri uri){
         try (OutputStream out = getContentResolver().openOutputStream(uri)){
             if(out!=null){
                 XWPFDocument document = new XWPFDocument();
