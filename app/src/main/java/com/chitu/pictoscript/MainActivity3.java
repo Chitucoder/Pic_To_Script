@@ -113,10 +113,6 @@ import java.util.List;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-//        Firebase initialization
-        storageReference= FirebaseStorage.getInstance().getReference();
-        databaseReference= FirebaseDatabase.getInstance().getReference("Document");
-
         Toolbar actionBar = findViewById(R.id.actionbar);
         setSupportActionBar(actionBar);
 
@@ -131,6 +127,7 @@ import java.util.List;
 
         selectDoc();
 
+
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +139,9 @@ import java.util.List;
             }
         });
 
+        //        Firebase initialization
+        storageReference= FirebaseStorage.getInstance().getReference();
+//        databaseReference= FirebaseDatabase.getInstance().getReference("Document");
 
         sharebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,6 +193,7 @@ import java.util.List;
             intent.setType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
             intent.putExtra(Intent.EXTRA_TITLE, F_name.getText()+".docx");
             filetitletype=".docx";
+            databaseReference= FirebaseDatabase.getInstance().getReference("Document/Words");;
             startActivityForResult(intent, REQUEST_CODE_SAVE_DOCX);
 
         } else if (item.equals(listDoc[1])) {
@@ -203,6 +204,7 @@ import java.util.List;
             intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             intent.putExtra(Intent.EXTRA_TITLE,F_name.getText()+".xlsx");
             filetitletype=".xlsx";
+            databaseReference= FirebaseDatabase.getInstance().getReference("Document/Excel");
             startActivityForResult(intent, REQUEST_CODE_SAVE_SHEET);
 
 
@@ -213,6 +215,7 @@ import java.util.List;
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_TITLE,F_name.getText()+".txt");
             filetitletype=".txt";
+            databaseReference= FirebaseDatabase.getInstance().getReference("Document/Text");
             startActivityForResult(intent, CREATE_TXTFILE_REQUEST_CODE);
 
         } else if (item.equals(listDoc[3])) {
