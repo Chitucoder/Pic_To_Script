@@ -45,4 +45,6 @@ dependencies {
     implementation ("org.apache.poi:poi-ooxml:5.2.5")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation ("com.firebaseui:firebase-ui-database:8.0.1")
+    implementation ("androidx.webkit:webkit:1.10.0")
 }

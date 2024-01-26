@@ -4,20 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.chitu.pictoscript.adapter.RecyclerDownloadsAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+;import java.security.cert.PKIXRevocationChecker;
 
 public class Downloads extends AppCompatActivity {
 
-    private List<FilesData> filesData=new ArrayList<>();
+
     private RecyclerView recyclerView;
     private String fileName;
-    private boolean recordExists;
-    private int i;
+    RecyclerDownloadsAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +25,27 @@ public class Downloads extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recycler_view_downloads_list);
-
-        String F_name = getIntent().getStringExtra("F_name");
-        filesData.add(new FilesData(F_name));
-
-
-
-        RecyclerDownloadsAdapter recyclerDownloadsAdapter = new RecyclerDownloadsAdapter(filesData, this);
-        recyclerView.setAdapter(recyclerDownloadsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        FirebaseRecyclerOptions<model> options=
+                new FirebaseRecyclerOptions.Builder<model>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Document"), model.class)
+                        .build();
+        adapter = new RecyclerDownloadsAdapter(options);
+        recyclerView.setAdapter(adapter);
+
+
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        adapter.stopListening();
+    }
 }
