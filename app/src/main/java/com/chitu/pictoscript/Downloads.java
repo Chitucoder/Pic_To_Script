@@ -43,9 +43,4 @@ public class Downloads extends AppCompatActivity {
         adapter.startListening();
     }
 
-    @Override
-    protected void onStop(){
-        super.onStop();
-        adapter.stopListening();
-    }
 }
