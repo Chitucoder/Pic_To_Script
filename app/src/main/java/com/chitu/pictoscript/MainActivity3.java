@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -141,7 +142,7 @@ import java.util.List;
 
         //        Firebase initialization
         storageReference= FirebaseStorage.getInstance().getReference();
-//        databaseReference= FirebaseDatabase.getInstance().getReference("Document");
+        databaseReference= FirebaseDatabase.getInstance().getReference("Document");
 
         sharebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +170,7 @@ import java.util.List;
             }
         });
 
+
     }
 
 
@@ -193,7 +195,6 @@ import java.util.List;
             intent.setType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
             intent.putExtra(Intent.EXTRA_TITLE, F_name.getText()+".docx");
             filetitletype=".docx";
-            databaseReference= FirebaseDatabase.getInstance().getReference("Document/Words");;
             startActivityForResult(intent, REQUEST_CODE_SAVE_DOCX);
 
         } else if (item.equals(listDoc[1])) {
@@ -204,7 +205,6 @@ import java.util.List;
             intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             intent.putExtra(Intent.EXTRA_TITLE,F_name.getText()+".xlsx");
             filetitletype=".xlsx";
-            databaseReference= FirebaseDatabase.getInstance().getReference("Document/Excel");
             startActivityForResult(intent, REQUEST_CODE_SAVE_SHEET);
 
 
@@ -215,7 +215,6 @@ import java.util.List;
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_TITLE,F_name.getText()+".txt");
             filetitletype=".txt";
-            databaseReference= FirebaseDatabase.getInstance().getReference("Document/Text");
             startActivityForResult(intent, CREATE_TXTFILE_REQUEST_CODE);
 
         } else if (item.equals(listDoc[3])) {
@@ -344,7 +343,7 @@ import java.util.List;
                                 @Override
                                 public void onSuccess(Uri uri) {
 
-                                    fileinfomodel obj=new fileinfomodel(F_name.getText().toString(), uri.toString());
+                                    fileinfomodel obj=new fileinfomodel(F_name.getText().toString()+filetitletype, uri.toString());
 
                                     databaseReference.child(databaseReference.push().getKey()).setValue(obj);
 
