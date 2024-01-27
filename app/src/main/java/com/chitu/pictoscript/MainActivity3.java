@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -113,10 +114,6 @@ import java.util.List;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-//        Firebase initialization
-        storageReference= FirebaseStorage.getInstance().getReference();
-        databaseReference= FirebaseDatabase.getInstance().getReference("Document");
-
         Toolbar actionBar = findViewById(R.id.actionbar);
         setSupportActionBar(actionBar);
 
@@ -131,6 +128,7 @@ import java.util.List;
 
         selectDoc();
 
+
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +140,9 @@ import java.util.List;
             }
         });
 
+        //        Firebase initialization
+        storageReference= FirebaseStorage.getInstance().getReference();
+        databaseReference= FirebaseDatabase.getInstance().getReference("Document");
 
         sharebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +169,7 @@ import java.util.List;
                 startActivity(downloadintent);
             }
         });
+
 
     }
 
@@ -341,7 +343,7 @@ import java.util.List;
                                 @Override
                                 public void onSuccess(Uri uri) {
 
-                                    fileinfomodel obj=new fileinfomodel(F_name.getText().toString(), uri.toString());
+                                    fileinfomodel obj=new fileinfomodel(F_name.getText().toString()+filetitletype, uri.toString());
 
                                     databaseReference.child(databaseReference.push().getKey()).setValue(obj);
 
