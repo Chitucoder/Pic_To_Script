@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     xmlns:andorid="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity3">
 
@@ -16,92 +17,126 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="168dp" />
 
-        <TextView
-            android:id="@+id/txtview"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="50dp"
-            android:text="Enter the file details to convert"
-            android:textSize="20sp"
+            android:layout_marginEnd="10dp"
+            andorid:cardCornerRadius="30dp"
+            andorid:cardElevation="25dp"
             andorid:layout_constraintEnd_toEndOf="parent"
             andorid:layout_constraintStart_toStartOf="parent"
-            andorid:layout_constraintTop_toBottomOf="@+id/actionbar" />
+            andorid:layout_constraintTop_toBottomOf="@+id/actionbar">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="30dp"
-            andorid:boxBackgroundColor="?android:attr/windowSplashScreenBackground"
-            andorid:boxBackgroundMode="outline"
-            andorid:layout_constraintEnd_toEndOf="parent"
-            andorid:layout_constraintStart_toStartOf="parent"
-            andorid:layout_constraintTop_toBottomOf="@+id/Filename">
-
-            <AutoCompleteTextView
-                android:id="@+id/auto_complete_textview"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/select_doc"
-                android:paddingVertical="15dp" />
+                android:layout_height="match_parent">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/txtview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="20dp"
+                    android:text="Enter the file details to convert"
+                    android:textSize="20sp"
+                    andorid:layout_constraintEnd_toEndOf="parent"
+                    andorid:layout_constraintStart_toStartOf="parent"
+                    andorid:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Filename"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="30dp"
-            andorid:layout_constraintEnd_toEndOf="parent"
-            andorid:layout_constraintStart_toStartOf="parent"
-            andorid:layout_constraintTop_toBottomOf="@+id/txtview">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/Filename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="25dp"
+                    andorid:boxCornerRadiusBottomEnd="15dp"
+                    andorid:boxCornerRadiusBottomStart="15dp"
+                    andorid:boxCornerRadiusTopEnd="15dp"
+                    andorid:boxCornerRadiusTopStart="15dp"
+                    andorid:layout_constraintEnd_toEndOf="parent"
+                    andorid:layout_constraintStart_toStartOf="parent"
+                    andorid:layout_constraintTop_toBottomOf="@+id/txtview">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/F_Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/File_Name" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/F_Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/File_Name" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="30dp"
+                    andorid:boxBackgroundColor="?android:attr/windowSplashScreenBackground"
+                    andorid:boxBackgroundMode="outline"
+                    andorid:boxCornerRadiusBottomEnd="15dp"
+                    andorid:boxCornerRadiusBottomStart="15dp"
+                    andorid:boxCornerRadiusTopEnd="15dp"
+                    andorid:boxCornerRadiusTopStart="15dp"
+                    andorid:layout_constraintBottom_toBottomOf="parent"
+                    andorid:layout_constraintEnd_toEndOf="parent"
+                    andorid:layout_constraintStart_toStartOf="parent"
+                    andorid:layout_constraintTop_toBottomOf="@+id/Filename">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/auto_complete_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/select_doc"
+                        android:paddingVertical="15dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/savebtn"
             android:layout_width="135dp"
             android:layout_height="65dp"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="60dp"
-            android:backgroundTint="#6600EE"
-            android:textColor="#ffffff"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_design"
             android:text="Save File"
+            android:textColor="#ffffff"
             andorid:layout_constraintEnd_toEndOf="parent"
             andorid:layout_constraintStart_toStartOf="parent"
-            andorid:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+            andorid:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sharebtn"
             android:layout_width="135dp"
             android:layout_height="65dp"
             android:textColor="#ffffff"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginTop="50dp"
-            android:backgroundTint="#6600EE"
+            android:background="@drawable/button_design"
             android:text="Share File"
             andorid:layout_constraintEnd_toEndOf="parent"
             andorid:layout_constraintStart_toStartOf="parent"
             andorid:layout_constraintTop_toBottomOf="@+id/savebtn" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/downloadbtn"
             android:layout_width="135dp"
             android:layout_height="65dp"
             android:textColor="#ffffff"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginTop="50dp"
-            android:backgroundTint="#6600EE"
+            android:background="@drawable/button_design"
             android:text="Downloads"
             andorid:layout_constraintEnd_toEndOf="parent"
             andorid:layout_constraintStart_toStartOf="parent"
