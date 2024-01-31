@@ -254,7 +254,7 @@ import java.util.List;
                     String blockText = block.getText();
                     Point[] blockCornerPoints = block.getCornerPoints();
                     Rect blockFrame = block.getBoundingBox();
-                    Log.d("difficult",blockText);
+                    //Log.d("difficult",blockText);
                     datatowrite.add(new DataFormat(blockText,blockFrame.left,blockFrame.right,blockFrame.top,blockFrame.bottom));
                 }
                 arrangeText();
