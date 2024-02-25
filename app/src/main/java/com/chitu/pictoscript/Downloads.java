@@ -1,6 +1,7 @@
 package com.chitu.pictoscript;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,8 @@ public class Downloads extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloads);
 
+        Toolbar actionBar = findViewById(R.id.actionbar);
+        setSupportActionBar(actionBar);
 
         recyclerView = findViewById(R.id.recycler_view_downloads_list);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));

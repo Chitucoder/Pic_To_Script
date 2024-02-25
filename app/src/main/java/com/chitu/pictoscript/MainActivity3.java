@@ -142,7 +142,7 @@ import java.util.List;
 
         //        Firebase initialization
         storageReference= FirebaseStorage.getInstance().getReference();
-        databaseReference= FirebaseDatabase.getInstance().getReference("Document");
+        databaseReference= FirebaseDatabase.getInstance().getReference("/Document");
 
         sharebtn.setOnClickListener(new View.OnClickListener() {
             @Override
