@@ -12,8 +12,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
-    Button next, downloadbtn2;
+    Button next, downloadbtn2,logout;
+    FirebaseAuth auth;
+    FirebaseUser user;
     String[] seltype = {"Image","PDF"};
     String inptype;
 
@@ -27,6 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
         next = findViewById(R.id.button);
         downloadbtn2=findViewById(R.id.downloadbtn2);
+        logout = findViewById(R.id.logout);
+        auth = FirebaseAuth.getInstance();
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MainActivity.this,Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
