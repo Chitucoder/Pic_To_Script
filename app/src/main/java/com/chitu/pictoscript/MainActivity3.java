@@ -27,12 +27,15 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
@@ -107,7 +110,8 @@ import java.util.List;
 //    FB
     StorageReference storageReference;
     DatabaseReference databaseReference;
-    String filetitletype;
+    String filetitletype,UID;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +126,10 @@ import java.util.List;
         sharebtn = findViewById(R.id.sharebtn);
         downloadbtn = findViewById(R.id.downloadbtn);
         F_name = (EditText) findViewById(R.id.F_Name);
+
+//      FB
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        UID= user.getUid();
         createTxtRecg();
 
         txtExtraction();
@@ -142,7 +150,8 @@ import java.util.List;
 
         //        Firebase initialization
         storageReference= FirebaseStorage.getInstance().getReference();
-        databaseReference= FirebaseDatabase.getInstance().getReference("/Document");
+        databaseReference= FirebaseDatabase.getInstance().getReference("/Document/"+UID);
+
 
         sharebtn.setOnClickListener(new View.OnClickListener() {
             @Override

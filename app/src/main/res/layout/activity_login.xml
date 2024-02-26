@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Login">
 
 
@@ -19,6 +20,9 @@
         android:id="@+id/cardView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="25dp"
+        app:cardBackgroundColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +39,10 @@
                 android:layout_marginHorizontal="25dp"
                 android:layout_marginTop="20dp"
                 android:textColorHint="#434343"
+                app:boxCornerRadiusBottomEnd="15dp"
+                app:boxCornerRadiusBottomStart="15dp"
+                app:boxCornerRadiusTopEnd="15dp"
+                app:boxCornerRadiusTopStart="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtview">
@@ -43,7 +51,7 @@
                     android:id="@+id/user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/User_name"
+                    android:hint="@string/Email"
                     android:textColor="#3C3C3C"
                     android:textColorHighlight="#673AB7"
                     android:textColorHint="#232323"
@@ -57,6 +65,10 @@
                 android:layout_marginHorizontal="25dp"
                 android:layout_marginTop="20dp"
                 android:textColorHint="#434343"
+                app:boxCornerRadiusBottomEnd="15dp"
+                app:boxCornerRadiusBottomStart="15dp"
+                app:boxCornerRadiusTopEnd="15dp"
+                app:boxCornerRadiusTopStart="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/username">
@@ -87,7 +99,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,6 +107,10 @@
                 android:layout_marginBottom="20dp"
                 android:onClick="signuphere"
                 android:text="Submit"
+                android:textColor="#ffffff"
+                android:paddingHorizontal="100dp"
+                android:textSize="20sp"
+                android:background="@drawable/button_design"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -108,37 +124,25 @@
         android:id="@+id/imageView6"
         android:layout_width="136dp"
         android:layout_height="137dp"
-        android:background="@drawable/button_design"
+        android:background="@drawable/account_background"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionbar"
-        app:srcCompat="@drawable/account_foreground"/>
-
-    <TextView
-        android:id="@+id/cont"
-        android:layout_width="218dp"
-        android:layout_height="44dp"
-        android:layout_gravity="center|bottom"
-        android:text="Continue without login"
-        android:textColor="#4A4A4A"
-        android:textSize="15dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register" />
+        app:layout_constraintVertical_bias="0.51"
+        app:srcCompat="@drawable/account_foreground" />
 
     <TextView
         android:id="@+id/register"
         android:layout_width="162dp"
-        android:layout_height="53dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
-        android:layout_marginTop="28dp"
         android:gravity="center_horizontal"
-        android:text="Create"
+        android:text="New User"
         android:textColor="#4A4A4A"
-        android:textSize="30sp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
