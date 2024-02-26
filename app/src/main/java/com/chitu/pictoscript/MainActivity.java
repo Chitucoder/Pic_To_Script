@@ -10,13 +10,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    Button next, downloadbtn2,logout;
+    Button next, downloadbtn2;
+    TextView logout;
     FirebaseAuth auth;
     FirebaseUser user;
     String[] seltype = {"Image","PDF"};

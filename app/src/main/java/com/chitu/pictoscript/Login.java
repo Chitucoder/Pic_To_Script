@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
 
     TextInputEditText edusername,edpassword;
     ProgressBar bar;
-    TextView reg,cont;
+    TextView reg;
     Button submit;
     public static String email;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -57,16 +57,7 @@ public class Login extends AppCompatActivity {
         edpassword = findViewById(R.id.pass);
         submit = findViewById(R.id.Submit);
         reg = findViewById(R.id.register);
-        cont = findViewById(R.id.cont);
 
-        cont.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
