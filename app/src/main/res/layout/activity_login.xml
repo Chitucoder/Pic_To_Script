@@ -82,6 +82,7 @@
                     android:textColorHighlight="#673AB7"
                     android:textColorHint="#232323"
                     android:textColorLink="#673AB7"
+                    android:inputType="textPassword"
                     tools:layout_editor_absoluteX="25dp"
                     tools:layout_editor_absoluteY="114dp" />
             </com.google.android.material.textfield.TextInputLayout>
