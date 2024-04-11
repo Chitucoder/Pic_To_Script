@@ -51,7 +51,7 @@
                     android:id="@+id/user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/User_name"
+                    android:hint="@string/Email"
                     android:textColor="#3C3C3C"
                     android:textColorHighlight="#673AB7"
                     android:textColorHint="#232323"
