@@ -19,7 +19,7 @@
 ## 🛠 Installation & Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/Pic-to-Script.git
+   git clone https://github.com/Chitucoder/Pic_To_Script
    ```
 2. Open the project in **Android Studio**.
 3. Install dependencies via **Gradle Sync**.
